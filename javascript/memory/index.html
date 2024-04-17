@@ -49,9 +49,11 @@
     <script>
         var userClick1 = 0;
         var userClick2 = 0;
+        let userClick3 = false;
         var userSelectedCard1 = "";
         var userSelectedCard2 = "";
 
+        //obj with properties set to the cardnums and their corresponding image urls
         const cardImages = {
             1: "url('http://localhost/js%20memory/images/memory%20cards/apple.png')",
             2: "url('http://localhost/js%20memory/images/memory%20cards/bananas.png')",
@@ -63,22 +65,45 @@
             8: "url('http://localhost/js%20memory/images/memory%20cards/strawberry.png')"
 
         }
+        const cardIds = [
+            "kaart1",
+            "kaart2",
+            "kaart3",
+            "kaart4",
+            "kaart5",
+            "kaart6",
+            "kaart7",
+            "kaart8",
+            "kaart9",
+            "kaart10",
+            "kaart11",
+            "kaart12", 
+            "kaart13", 
+            "kaart14", 
+            "kaart15", 
+            "kaart16", 
+        ]
+
+        //Store url of clicked image and add that image to card with the same cardNum
        function setCardImage(cardNum, cardId){
             let currentImageUrl = cardImages[cardNum] 
             document.getElementById(cardId).style.backgroundImage = currentImageUrl;
+            
        }
+    
+
         function checkClickedCard(cardNum, cardId){
+            if (userClick3){
+               for (let i = 0; i < cardIds.length; i++){
+                    document.getElementById(cardIds[i]).style.backgroundImage = "none"
+                } 
+                userClick3 = false
+            }
+            
             setCardImage(cardNum, cardId)
             //Geklikte kaart disablen, want je mag maar een keer op dezelfde kaart klikken
             document.getElementById(cardId).disabled = true;
-            //juiste waarde op de kaart zetten
-            //document.getElementById(cardId).value = cardNum;
-
-            if(cardNum == 1) {
-                document.getElementById(cardId).style.backgroundImage = "url('http://localhost/js%20memory/images/memory%20cards/apple.png')";
-            }
-            
-            
+      
             //Lees en onthoudt klik1 en klik2
             if(userClick1==0){
                 userClick1 = cardNum;
@@ -87,12 +112,19 @@
                 userClick2 = cardNum;
                 userSelectedCard2 = cardId;
             }
+            
 
             if(userClick2!=0){
+                userClick3 = true;
+                //note: if both cards have the same value (so a correct match)the disabled value is not changed
+                //back to false so cards remain unable to be clicked.
                 if(userClick1==userClick2){
-                   
                     document.getElementById("Message-div").innerHTML = `<h3>Goed gedaan!!!</h3>`
                     document.getElementById("Message-div").style.backgroundColor = "#20ce3d"
+                    document.getElementById(userSelectedCard1).style.backgroundColor = "#20ce3d"
+                    document.getElementById(userSelectedCard1).style.borderColor = "#20ce3d"
+                    document.getElementById(userSelectedCard2).style.backgroundColor = "#20ce3d"
+                    document.getElementById(userSelectedCard2).style.borderColor = "#20ce3d"
                 }else{
                     document.getElementById("Message-div").innerHTML = `<h3>Vaardigheids probleem!!!</h3>`
                     document.getElementById("Message-div").style.backgroundColor = "#d74747"
@@ -102,7 +134,7 @@
                     document.getElementById(userSelectedCard1).value = "";
                     document.getElementById(userSelectedCard2).value = "";
                 }
-
+                
                 userClick1 = 0;
                 userClick2 = 0;
                 
