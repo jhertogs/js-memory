@@ -20,11 +20,25 @@
             height: 100px;
             background-color: #0099FF;
             margin:10px;
-            border:1px solid #999999;
+            border:1px solid #0099FF;
+            border-radius: 5px;
             font-size:25px;
             font-weight:bold;
             color:white;
             float:left;
+        }
+        .Message-div{
+            font-family: verdana;
+            font-size:18px;
+            color: rgb(52, 52, 52);
+            margin:auto;
+            margin-top: 10px;
+            width: 10vw;
+            background-color:#d74747;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            border-radius: 5px;
         }
     </style>
     <script>
@@ -32,13 +46,15 @@
         var userClick2 = 0;
         var userSelectedCard1 = "";
         var userSelectedCard2 = "";
+       
         function checkClickedCard(cardNum, cardId){
+            
             //Geklikte kaart disablen, want je mag maar een keer op dezelfde kaart klikken
             document.getElementById(cardId).disabled = true;
             //juiste waarde op de kaart zetten
             document.getElementById(cardId).value = cardNum;
             //document.getElementById(cardId).style = "background: url(myimage.png)";
-
+            console.log(cardId, cardNum)
             //Lees en onthoudt klik1 en klik2
             if(userClick1==0){
                 userClick1 = cardNum;
@@ -50,9 +66,13 @@
 
             if(userClick2!=0){
                 if(userClick1==userClick2){
-                    alert('Goed zo...');
+                   
+                    document.getElementById("Message-div").innerHTML = `<h3>Goed gedaan!!!</h3>`
+                    document.getElementById("Message-div").style.backgroundColor = "#20ce3d"
                 }else{
-                    alert('Fout...');
+                    document.getElementById("Message-div").innerHTML = `<h3>Vaardigheids probleem!!!</h3>`
+                    document.getElementById("Message-div").style.backgroundColor = "#d74747"
+
                     document.getElementById(userSelectedCard1).disabled = false;
                     document.getElementById(userSelectedCard2).disabled = false;
                     document.getElementById(userSelectedCard1).value = "";
@@ -61,9 +81,9 @@
 
                 userClick1 = 0;
                 userClick2 = 0;
+                
             }
         }
-        
 
     </script>
 </head>
@@ -71,10 +91,14 @@
 
     <div class="memoryContainer">
         <h1>Memory</h1>
+        
         <input type="button" value="" id="kaart1" class="memoryCard" onclick="checkClickedCard(1, 'kaart1');" />
         <input type="button" value="" id="kaart2" class="memoryCard" onclick="checkClickedCard(2, 'kaart2');"/>
         <input type="button" value="" id="kaart3" class="memoryCard" onclick="checkClickedCard(1, 'kaart3');"/>
         <input type="button" value="" id="kaart4" class="memoryCard" onclick="checkClickedCard(2, 'kaart4');"/>
+    </div>
+    <div>
+        <div id="Message-div" class="Message-div"></div> 
     </div>
 
 </body>
