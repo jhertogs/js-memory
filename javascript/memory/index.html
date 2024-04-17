@@ -6,11 +6,13 @@
             text-align: center;
             font-family: verdana;
             font-size: 25px;
-            color: white;
+            color: rgb(39, 39, 39);
         }
         .memoryContainer {
-            width: 240px;
-            height: 325px;
+            display: flex;
+            flex-wrap: wrap;
+            width: 500px;
+            height: 500px;
             border: 1px solid #E9E9E9;
             margin: auto;
             background-color: #666;
@@ -26,6 +28,8 @@
             font-weight:bold;
             color:white;
             float:left;
+            background-repeat: no-repeat;
+        
         }
         .Message-div{
             font-family: verdana;
@@ -39,6 +43,7 @@
             justify-content: center;
             text-align: center;
             border-radius: 5px;
+            
         }
     </style>
     <script>
@@ -46,15 +51,33 @@
         var userClick2 = 0;
         var userSelectedCard1 = "";
         var userSelectedCard2 = "";
-       
+
+        const cardImages = {
+            1: "url('http://localhost/js%20memory/images/memory%20cards/apple.png')",
+            2: "url('http://localhost/js%20memory/images/memory%20cards/bananas.png')",
+            3: "url('http://localhost/js%20memory/images/memory%20cards/cherries.png')",
+            4: "url('http://localhost/js%20memory/images/memory%20cards/grapes.png')",
+            5: "url('http://localhost/js%20memory/images/memory%20cards/lemon.png')",
+            6: "url('http://localhost/js%20memory/images/memory%20cards/orange.png')",
+            7: "url('http://localhost/js%20memory/images/memory%20cards/pineapple.png')",
+            8: "url('http://localhost/js%20memory/images/memory%20cards/strawberry.png')"
+
+        }
+       function setCardImage(cardNum, cardId){
+        let currentImageUrl = cardImages[cardNum] 
+       }
         function checkClickedCard(cardNum, cardId){
             
             //Geklikte kaart disablen, want je mag maar een keer op dezelfde kaart klikken
             document.getElementById(cardId).disabled = true;
             //juiste waarde op de kaart zetten
-            document.getElementById(cardId).value = cardNum;
-            //document.getElementById(cardId).style = "background: url(myimage.png)";
-            console.log(cardId, cardNum)
+            //document.getElementById(cardId).value = cardNum;
+
+            if(cardNum == 1) {
+                document.getElementById(cardId).style.backgroundImage = "url('http://localhost/js%20memory/images/memory%20cards/apple.png')";
+            }
+            
+            
             //Lees en onthoudt klik1 en klik2
             if(userClick1==0){
                 userClick1 = cardNum;
@@ -84,18 +107,34 @@
                 
             }
         }
+        
 
     </script>
 </head>
 <body>
-
+    <h1>Memory</h1>
     <div class="memoryContainer">
-        <h1>Memory</h1>
+        
         
         <input type="button" value="" id="kaart1" class="memoryCard" onclick="checkClickedCard(1, 'kaart1');" />
         <input type="button" value="" id="kaart2" class="memoryCard" onclick="checkClickedCard(2, 'kaart2');"/>
         <input type="button" value="" id="kaart3" class="memoryCard" onclick="checkClickedCard(1, 'kaart3');"/>
         <input type="button" value="" id="kaart4" class="memoryCard" onclick="checkClickedCard(2, 'kaart4');"/>
+
+        <input type="button" value="" id="kaart5" class="memoryCard" onclick="checkClickedCard(3, 'kaart5');" />
+        <input type="button" value="" id="kaart6" class="memoryCard" onclick="checkClickedCard(4, 'kaart6');"/>
+        <input type="button" value="" id="kaart7" class="memoryCard" onclick="checkClickedCard(3, 'kaart7');"/>
+        <input type="button" value="" id="kaart8" class="memoryCard" onclick="checkClickedCard(4, 'kaart8');"/>
+
+        <input type="button" value="" id="kaart9" class="memoryCard" onclick="checkClickedCard(5, 'kaart9');" />
+        <input type="button" value="" id="kaart10" class="memoryCard" onclick="checkClickedCard(6, 'kaart10');"/>
+        <input type="button" value="" id="kaart11" class="memoryCard" onclick="checkClickedCard(5, 'kaart11');"/>
+        <input type="button" value="" id="kaart12" class="memoryCard" onclick="checkClickedCard(6, 'kaart12');"/>
+
+        <input type="button" value="" id="kaart13" class="memoryCard" onclick="checkClickedCard(7, 'kaart13');" />
+        <input type="button" value="" id="kaart14" class="memoryCard" onclick="checkClickedCard(8, 'kaart14');"/>
+        <input type="button" value="" id="kaart15" class="memoryCard" onclick="checkClickedCard(7, 'kaart15');"/>
+        <input type="button" value="" id="kaart16" class="memoryCard" onclick="checkClickedCard(8, 'kaart16');"/>
     </div>
     <div>
         <div id="Message-div" class="Message-div"></div> 
