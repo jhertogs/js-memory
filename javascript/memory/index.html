@@ -64,10 +64,11 @@
 
         }
        function setCardImage(cardNum, cardId){
-        let currentImageUrl = cardImages[cardNum] 
+            let currentImageUrl = cardImages[cardNum] 
+            document.getElementById(cardId).style.backgroundImage = currentImageUrl;
        }
         function checkClickedCard(cardNum, cardId){
-            
+            setCardImage(cardNum, cardId)
             //Geklikte kaart disablen, want je mag maar een keer op dezelfde kaart klikken
             document.getElementById(cardId).disabled = true;
             //juiste waarde op de kaart zetten
